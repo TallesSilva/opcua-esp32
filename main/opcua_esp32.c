@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <sys/param.h>
 #include <unistd.h>
@@ -77,7 +78,7 @@ static void opcua_task(void *arg)
     ESP_LOGI(TAG, "Fire up OPC UA Server.");
     UA_Server *server = UA_Server_new();
     UA_ServerConfig *config = UA_Server_getConfig(server);
-    UA_ServerConfig_setMinimalCustomBuffer(config, 2420, 0, sendBufferSize, recvBufferSize);
+    UA_ServerConfig_setMinimalCustomBuffer(config, 4840, 0, sendBufferSize, recvBufferSize);
 
     const char *appUri = "open62541.esp32.server";
     UA_String hostName = UA_STRING("opcua-esp32");
@@ -115,9 +116,9 @@ static void opcua_task(void *arg)
 
     /* Add Information Model Objects Here */
     // addLEDMethod(server);
-    addCurrentTemperatureDataSourceVariable(server);
-    addRelay0ControlNode(server);
-    addRelay1ControlNode(server);
+    addCurrentNivelDataSourceVariable(server);
+    addMotorControlNode(server);
+    //addValvulaControlNode(server);
 
     ESP_LOGI(TAG, "Heap Left : %d", xPortGetFreeHeapSize());
     UA_StatusCode retval = UA_Server_run_startup(server);

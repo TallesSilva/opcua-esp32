@@ -4,5 +4,5 @@ cmake_minimum_required(VERSION 3.5)
 
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-set(EXTRA_COMPONENTS_DIRS "components/open62541lib" "components/ethernet" "components/model")
-project(opcua_esp32)
+set(EXTRA_COMPONENTS_DIRS "opcua-esp32/components/open62541lib" "opcua-esp32/components/ethernet" "opcua-esp32/components/model")
+project(Talles_OPCUA_ESP)
