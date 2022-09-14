@@ -19,10 +19,9 @@
 
 #include "ethernet_connect.h"
 #include "open62541.h"
-#include "DHT22.h"
-#include "model.h"
+#include "Node.h"
 
-#define EXAMPLE_ESP_MAXIMUM_RETRY 10
+#define EXAMPLE_ESP_MAXIMUM_RETRY 1
 
 #define TAG "OPCUA_ESP32"
 #define SNTP_TAG "SNTP"
@@ -70,15 +69,15 @@ UA_ServerConfig_setUriName(UA_ServerConfig *uaServerConfig, const char *uri, con
 static void opcua_task(void *arg)
 {
     //BufferSize's got to be decreased due to latest refactorings in open62541 v1.2rc.
-    UA_Int32 sendBufferSize = 16384;
-    UA_Int32 recvBufferSize = 16384;
+    UA_Int32 sendBufferSize = 8192;
+    UA_Int32 recvBufferSize = 8192;
 
     ESP_ERROR_CHECK(esp_task_wdt_add(NULL));
 
     ESP_LOGI(TAG, "Fire up OPC UA Server.");
     UA_Server *server = UA_Server_new();
     UA_ServerConfig *config = UA_Server_getConfig(server);
-    UA_ServerConfig_setMinimalCustomBuffer(config, 4840, 0, sendBufferSize, recvBufferSize);
+    UA_ServerConfig_setMinimalCustomBuffer(config, 2420, 0, sendBufferSize, recvBufferSize);
 
     const char *appUri = "open62541.esp32.server";
     UA_String hostName = UA_STRING("opcua-esp32");
