@@ -1,0 +1,403 @@
+[
+    {
+        "id": "841513ebbd8aa54e",
+        "type": "tab",
+        "label": "Gateway Codesys&ESP32",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "263ce33d6b029475",
+        "type": "OpcUa-Client",
+        "z": "841513ebbd8aa54e",
+        "endpoint": "9c8ebcb7fc610718",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "LEI_CDSYS_VALV",
+        "x": 550,
+        "y": 300,
+        "wires": [
+            [
+                "a7083774ae151c25"
+            ]
+        ]
+    },
+    {
+        "id": "abece59a5e2ec0fe",
+        "type": "OpcUa-Item",
+        "z": "841513ebbd8aa54e",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.Var1",
+        "datatype": "Boolean",
+        "value": "1",
+        "name": "VAL",
+        "x": 350,
+        "y": 300,
+        "wires": [
+            [
+                "263ce33d6b029475"
+            ]
+        ]
+    },
+    {
+        "id": "72e7d05e3520c00e",
+        "type": "inject",
+        "z": "841513ebbd8aa54e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "abece59a5e2ec0fe"
+            ]
+        ]
+    },
+    {
+        "id": "0c0ded2822208bcb",
+        "type": "OpcUa-Client",
+        "z": "841513ebbd8aa54e",
+        "endpoint": "5f6648e8355be806",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "LEI_CDSYS_NIVEL",
+        "x": 550,
+        "y": 740,
+        "wires": [
+            [
+                "5d03deb3e22bb33d",
+                "0bb61c0910b9ff3b"
+            ]
+        ]
+    },
+    {
+        "id": "c260a86321353aff",
+        "type": "OpcUa-Item",
+        "z": "841513ebbd8aa54e",
+        "item": "ns=1;s=Nivel",
+        "datatype": "Int16",
+        "value": "",
+        "name": "Nível",
+        "x": 350,
+        "y": 740,
+        "wires": [
+            [
+                "0c0ded2822208bcb"
+            ]
+        ]
+    },
+    {
+        "id": "abdc368ebb7d6c3c",
+        "type": "inject",
+        "z": "841513ebbd8aa54e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 150,
+        "y": 740,
+        "wires": [
+            [
+                "c260a86321353aff"
+            ]
+        ]
+    },
+    {
+        "id": "0c60c3c261df715e",
+        "type": "OpcUa-Client",
+        "z": "841513ebbd8aa54e",
+        "endpoint": "9c8ebcb7fc610718",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "ESC_CDSYS_NIVEL",
+        "x": 550,
+        "y": 620,
+        "wires": [
+            [
+                "5b2c68130888108c"
+            ]
+        ]
+    },
+    {
+        "id": "0bb61c0910b9ff3b",
+        "type": "OpcUa-Item",
+        "z": "841513ebbd8aa54e",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.Nivel",
+        "datatype": "Int16",
+        "value": "",
+        "name": "Nível",
+        "x": 350,
+        "y": 620,
+        "wires": [
+            [
+                "0c60c3c261df715e"
+            ]
+        ]
+    },
+    {
+        "id": "9a6eda640557d472",
+        "type": "OpcUa-Client",
+        "z": "841513ebbd8aa54e",
+        "endpoint": "9c8ebcb7fc610718",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "ESC_CDSYS_VALV",
+        "x": 550,
+        "y": 220,
+        "wires": [
+            [
+                "25c7679453a0ea12"
+            ]
+        ]
+    },
+    {
+        "id": "275bd85dd14bb3b4",
+        "type": "OpcUa-Item",
+        "z": "841513ebbd8aa54e",
+        "item": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.Var1",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "VAL",
+        "x": 350,
+        "y": 220,
+        "wires": [
+            [
+                "9a6eda640557d472"
+            ]
+        ]
+    },
+    {
+        "id": "e488a362dbb0eb8e",
+        "type": "inject",
+        "z": "841513ebbd8aa54e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 150,
+        "y": 220,
+        "wires": [
+            [
+                "275bd85dd14bb3b4"
+            ]
+        ]
+    },
+    {
+        "id": "d41b2344307674e2",
+        "type": "inject",
+        "z": "841513ebbd8aa54e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "275bd85dd14bb3b4"
+            ]
+        ]
+    },
+    {
+        "id": "f10cda12b2c3a9a6",
+        "type": "comment",
+        "z": "841513ebbd8aa54e",
+        "name": "VALVULA",
+        "info": "",
+        "x": 140,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "30595069ca0ff3aa",
+        "type": "comment",
+        "z": "841513ebbd8aa54e",
+        "name": "NIVEL",
+        "info": "",
+        "x": 130,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "5d03deb3e22bb33d",
+        "type": "debug",
+        "z": "841513ebbd8aa54e",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "5b2c68130888108c",
+        "type": "debug",
+        "z": "841513ebbd8aa54e",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "a7083774ae151c25",
+        "type": "debug",
+        "z": "841513ebbd8aa54e",
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "25c7679453a0ea12",
+        "type": "debug",
+        "z": "841513ebbd8aa54e",
+        "name": "debug 9",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9c8ebcb7fc610718",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://192.168.15.9:4840",
+        "secpol": "Basic256Sha256",
+        "secmode": "SignAndEncrypt",
+        "none": false,
+        "login": true,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "5f6648e8355be806",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://192.168.15.8:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    }
+]
