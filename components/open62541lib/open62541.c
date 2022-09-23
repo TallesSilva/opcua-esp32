@@ -26896,7 +26896,7 @@ UA_Server_init(UA_Server *server) {
 
     /* Add a regular callback for cleanup and maintenance. With a 10s interval. */
     UA_Server_addRepeatedCallback(server, (UA_ServerCallback)UA_Server_cleanup, NULL,
-                                  10000.0, NULL);
+                                  2000.0, NULL);
 
     /* Initialize namespace 0*/
     res = UA_Server_initNS0(server);
@@ -27128,7 +27128,7 @@ UA_ServerStatistics UA_Server_getStatistics(UA_Server *server)
 /* Main Server Loop */
 /********************/
 
-#define UA_MAXTIMEOUT 50 /* Max timeout in ms between main-loop iterations */
+#define UA_MAXTIMEOUT 1000 /* Max timeout in ms between main-loop iterations */
 
 /* Start: Spin up the workers and the network layer and sample the server's
  *        start time.
@@ -28465,6 +28465,7 @@ UA_Server_initNS0(UA_Server *server) {
 
 void
 UA_ServerConfig_clean(UA_ServerConfig *config) {
+
     if(!config)
         return;
 

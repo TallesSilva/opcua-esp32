@@ -12,7 +12,7 @@ configureGPIO(void) {
     gpio_set_direction(I_VALVULA, GPIO_MODE_INPUT_OUTPUT);
 }
 
-// /* LED Method */
+/* LED Method */
 
 // UA_StatusCode
 // ledProcessCallBack(UA_Server *server,
@@ -54,10 +54,10 @@ configureGPIO(void) {
 //     object_attr.displayName = UA_LOCALIZEDTEXT("en-US", "Pump1");
 
 //     UA_Server_addObjectNode(server, UA_NODEID_NUMERIC(1, 0),
-//                             UA_NODEID_NUMERIC(0, UA_NS0ID_OBJECTSFOLDER),
-//                             UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES),
+//                             UA_NODEID_NUMERIC(1, UA_NS0ID_OBJECTSFOLDER),
+//                             UA_NODEID_NUMERIC(1, UA_NS0ID_ORGANIZES),
 //                             UA_QUALIFIEDNAME(1, "Pump1"),
-//                             UA_NODEID_NUMERIC(2, 1002),
+//                             UA_NODEID_NUMERIC(1, 1002),
 //                             object_attr, NULL, &createdNodeId);
 
 //     UA_Argument inputArgument;
@@ -80,10 +80,10 @@ configureGPIO(void) {
 //     helloAttr.displayName = UA_LOCALIZEDTEXT("en-US", "Blink");
 //     helloAttr.executable = true;
 //     helloAttr.userExecutable = true;
-//     UA_Server_addMethodNode(server, UA_NODEID_NUMERIC(1, 62541),
-//                             UA_NODEID_NUMERIC(0, UA_NS0ID_OBJECTSFOLDER),
-//                             UA_NODEID_NUMERIC(0, UA_NS0ID_HASORDEREDCOMPONENT),
-//                             UA_QUALIFIEDNAME(1, "Blink"),
+//     UA_Server_addMethodNode(server, UA_NODEID_NUMERIC(2, 62541),
+//                             UA_NODEID_NUMERIC(2, UA_NS0ID_OBJECTSFOLDER),
+//                             UA_NODEID_NUMERIC(2, UA_NS0ID_HASORDEREDCOMPONENT),
+//                             UA_QUALIFIEDNAME(2, "Blink"),
 //                             helloAttr, &ledProcessCallBack,
 //                             1, &inputArgument, 1, &outputArgument, NULL, &createdNodeId);
 // }
@@ -97,9 +97,9 @@ readCurrentNivel(UA_Server *server,
                 const UA_NodeId *nodeId, void *nodeContext,
                 UA_Boolean sourceTimeStamp, const UA_NumericRange *range,
                 UA_DataValue *dataValue) {
-    UA_Float Nivel = adc1_get_raw(F_Nivel);
+    UA_Int16 Nivel = adc1_get_raw(F_Nivel);
     UA_Variant_setScalarCopy(&dataValue->value, &Nivel,
-                             &UA_TYPES[UA_TYPES_FLOAT]);
+                             &UA_TYPES[UA_TYPES_INT16]);
     dataValue->hasValue = true;
     return UA_STATUSCODE_GOOD;
 }
@@ -109,7 +109,7 @@ void
 addCurrentNivelDataSourceVariable(UA_Server *server) {
     UA_VariableAttributes attr = UA_VariableAttributes_default;
     attr.displayName = UA_LOCALIZEDTEXT("en-US", "Nivel");
-    attr.dataType = UA_TYPES[UA_TYPES_FLOAT].typeId;
+    attr.dataType = UA_TYPES[UA_TYPES_INT16].typeId;
     attr.accessLevel = UA_ACCESSLEVELMASK_READ;
 
     UA_NodeId currentNodeId = UA_NODEID_STRING(1, "Nivel");

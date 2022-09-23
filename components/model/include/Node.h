@@ -2,24 +2,24 @@
 #include "driver/adc.h"
 
 /* GPIO Numbers */
-// #define BLINK_GPIO 2
+#define BLINK_GPIO 2
 #define F_Nivel ADC1_CHANNEL_6
 #define I_MOTOR 32
 #define I_VALVULA 33
-// #define RELAY_2_GPIO 26
-// #define RELAY_3_GPIO 27
+#define RELAY_2_GPIO 26
+#define RELAY_3_GPIO 27
 
-// /* Led Method */
-// UA_StatusCode
-// ledProcessCallBack(UA_Server *server,
-//                    const UA_NodeId *sessionId, void *sessionHandle,
-//                    const UA_NodeId *methodId, void *methodContext,
-//                    const UA_NodeId *objectId, void *objectContext,
-//                    size_t inputSize, const UA_Variant *input,
-//                    size_t outputSize, UA_Variant *output);
+/* Led Method */
+UA_StatusCode
+ledProcessCallBack(UA_Server *server,
+                   const UA_NodeId *sessionId, void *sessionHandle,
+                   const UA_NodeId *methodId, void *methodContext,
+                   const UA_NodeId *objectId, void *objectContext,
+                   size_t inputSize, const UA_Variant *input,
+                   size_t outputSize, UA_Variant *output);
 
-// void
-// addLEDMethod(UA_Server *server);
+void
+addLEDMethod(UA_Server *server);
 
 /* Nível */
 UA_StatusCode

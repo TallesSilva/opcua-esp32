@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <sys/param.h>
 #include <unistd.h>
@@ -70,8 +69,8 @@ UA_ServerConfig_setUriName(UA_ServerConfig *uaServerConfig, const char *uri, con
 static void opcua_task(void *arg)
 {
     //BufferSize's got to be decreased due to latest refactorings in open62541 v1.2rc.
-    UA_Int32 sendBufferSize = 8192;
-    UA_Int32 recvBufferSize = 8192;
+    UA_Int32 sendBufferSize = 2*4840;
+    UA_Int32 recvBufferSize = 2*4840;
 
     ESP_ERROR_CHECK(esp_task_wdt_add(NULL));
 
@@ -115,10 +114,10 @@ static void opcua_task(void *arg)
     UA_ServerConfig_setCustomHostname(config, hostName);
 
     /* Add Information Model Objects Here */
-    // addLEDMethod(server);
+    //addLEDMethod(server);
     addCurrentNivelDataSourceVariable(server);
     addMotorControlNode(server);
-    //addValvulaControlNode(server);
+    addValvulaControlNode(server);
 
     ESP_LOGI(TAG, "Heap Left : %d", xPortGetFreeHeapSize());
     UA_StatusCode retval = UA_Server_run_startup(server);
